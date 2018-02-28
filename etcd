@@ -1,0 +1,15 @@
+#!/bin/bash
+
+docker run -d \
+  --net net0 \
+  --name etcda1 \
+  quay.io/coreos/etcd \
+   etcd \
+    --name etcda1 \
+    --listen-peer-urls http://0.0.0.0:2380 \
+    --listen-client-urls http://0.0.0.0:2379 \
+    --advertise-client-urls http://etcda1:2379 \
+    --initial-cluster-token etcda \
+    --initial-cluster-state new \
+    --initial-cluster etcda1=http://etcda1:2380
+
